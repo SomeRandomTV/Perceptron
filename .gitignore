@@ -1,0 +1,10 @@
+
+# python stuff
+**/.perc
+**/__pycache__
+
+# IDE shit
+**/.DS_Store
+
+# Data
+**/data
