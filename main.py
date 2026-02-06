@@ -6,16 +6,6 @@ from src.perceptron import Perceptron
 # Author: Alejandro Rubio
 # Date: 02/02/2026
 
-# Description:
-#      The Perceptron is a linear binary classifier that assigns an input vector to one of two classes based on a learned decision boundary.
-#      The decision boundary is given by d(x) = w * x + w_0 = 0
-#      where:
-#          w => Weight vector(Found in training)
-#          x => Input Vector(Given data)
-#          w_0 => Bias term
-
-         
-    
 
 def main():
     """
@@ -24,6 +14,8 @@ def main():
     Creates linearly separable data, trains the perceptron,
     and visualizes the results.
     """
+    
+    np.random.seed(23)
     
     # LINEARLY SEPARABLE DATA
     # Class 0: points around (-2, -2)
@@ -34,7 +26,6 @@ def main():
     # Combine and create labels
     X = np.vstack([class_0, class_1])
     Y = np.hstack([np.zeros(len(class_0)), np.ones(len(class_1))]).astype(int)
-    
     
     print("===============================")
     print("Training Data Points:")

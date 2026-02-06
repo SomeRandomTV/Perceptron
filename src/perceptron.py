@@ -5,7 +5,6 @@ from typing import List
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-np.random.seed(23)
 class Perceptron:
     """
     A simple perceptron classifier for binary classification.
@@ -14,14 +13,14 @@ class Perceptron:
     adjusting weights based on prediction errors.
     """
 
-    def __init__(self, x: np.ndarray, y: np.ndarray, learning_rate: float = 1.0) -> None:
+    def __init__(self, x: np.ndarray, y: np.ndarray, learning_rate: float = 0.01) -> None:
         """
         Initialize the perceptron with training data.
 
         Args:
             x: Input features as a 2D numpy array (samples x features)
             y: Target labels as a 1D numpy array
-            learning_rate: Step size for weight updates (default: 1.0)
+            learning_rate: Step size for weight updates (default: 0.01)
         """
         self.input_features: np.ndarray = x
         self.learning_rate: float = learning_rate
@@ -109,14 +108,14 @@ class Perceptron:
             self.bias = bias
             self._plot_decision_boundary(epoch=epoch)
             
+            print(f"======= Weights + Bias after Epoch {epoch} ===========")
+            print(f" -- Weights: {self.weights}")
+            print(f" -- Bias: {self.bias}")
+            
             if misclassifications == 0:
                 print(f"Convergence achieved at epoch {epoch}")
                 print(f"Misclassifications: {misclassifications}")
                 return 0
-            
-            print(f"======= Weights + Bias after Epoch {epoch} ===========")
-            print(f" -- Weights: {self.weights}")
-            print(f" -- Bias: {self.bias}")
             
         return 0    
             
