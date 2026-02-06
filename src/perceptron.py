@@ -131,7 +131,7 @@ class Perceptron:
         X = self.input_features
         y = self.labels
         
-        # Separate classes for plotting
+        # separate classes for plotting
         class_0 = X[y == 0]
         class_1 = X[y == 1]
         
@@ -174,87 +174,4 @@ class Perceptron:
         return prediction
     
     
-def main():
-    """
-    Main function to demonstrate the perceptron classifier.
-    
-    Creates linearly separable data, trains the perceptron,
-    and visualizes the results.
-    """
-    
-    # LINEARLY SEPARABLE DATA
-    # Class 0: points around (-2, -2)
-    class_0 = np.random.randn(100, 2) + np.array([-1, 2])
-    # Class 1: points around (2, 2)
-    class_1 = np.random.randn(100, 2) + np.array([-2, -3])
-    
-    # Combine and create labels
-    X = np.vstack([class_0, class_1])
-    Y = np.hstack([np.zeros(len(class_0)), np.ones(len(class_1))]).astype(int)
-    
-    
-    print("===============================")
-    print("Training Data Points:")
-    for i, (point, label) in enumerate(zip(X, Y)):
-        print(f"Point {i}: Features={point}, Label={label}")
-    print("===============================")
-        
-        
-    
-    # # Visualize training data
-    # plt.figure(figsize=(10, 8))
-    # plt.scatter(class_0[:, 0], class_0[:, 1], label='Class 0', alpha=0.6)
-    # plt.scatter(class_1[:, 0], class_1[:, 1], label='Class 1', alpha=0.6)
-    # plt.xlabel('Feature 1')
-    # plt.ylabel('Feature 2')
-    # plt.title('Feature Space')
-    # plt.legend()
-    # plt.grid()
-    # plt.show()
-    
-    # # visualize weight space
-    # # x_i * w_i = 0
-    # # x_1 = 6w_2 + 3w_1 + w_0 = 0
-    # # x_2 = 7w_2 + 3w_1 + w_0 = 0
-    # # x_3 = 2w_2 + 3w_1 + w_0 = 0
-    # # x_4 = 3w_2 + 2w_1 + w_0 = 0
-    # fig = plt.figure(figsize=(18,10))
-    # ax = fig.add_subplot(111,projection="3d")
-    # # Create a grid for w_0, w_1, w_2
-    # w0 = np.linspace(-10, 10, 50)
-    # w1 = np.linspace(-10, 10, 50)
-    # W0, W1 = np.meshgrid(w0, w1)
-    
-    # for idx, (point, label) in enumerate(zip(X, Y)):
-    #     if point[1] != 0:
-    #         W2 = -(point[0] * W1 + W0) / point[1]
-    #         class_label = "Class 0" if label == 0 else "Class 1"
-    #         ax.plot_surface(W0, W1, W2, alpha=0.3, label=f'Point {idx} ({class_label})')
-            
-    #         # arrow pointing in inequality direction
-    #         center_w0, center_w1 = 0, 0
-    #         center_w2 = -(point[0] * center_w1 + center_w0) / point[1]
-            
-    #         # normal to plane scaled by label (0 or 1)
-    #         direction = 2 if label == 0 else -2
-    #         ax.quiver(center_w0, center_w1, center_w2, 
-    #                  point[0], 1, point[1], 
-    #                  length=direction, normalize=True, 
-    #                  color='red' if label == 0 else 'blue', arrow_length_ratio=0.3)
 
-    # ax.set_xlabel('w_0 (bias)')
-    # ax.set_ylabel('w_1')
-    # ax.set_zlabel('w_2')
-    # ax.legend()
-    # ax.set_title('Weight Space Constraints')
-    # plt.show()
-    
-    
-    # Train the perceptron
-    perceptron = Perceptron(X, Y, learning_rate=0.01)
-    perceptron.fit()
-    
-
-
-if __name__ == '__main__':
-    main() 
